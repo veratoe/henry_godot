@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Aqua-Capsule-Button-Pressed-.png" type="Texture" id=1]
+[ext_resource path="res://scripts/henry.gd" type="Script" id=2]
+[ext_resource path="res://scripts/World.gd" type="Script" id=3]
+[ext_resource path="res://building3.png" type="Texture" id=4]
+[ext_resource path="res://2de831e9-3f5a-4f45-92e2-69ecd152d8c1.png" type="Texture" id=5]
+[ext_resource path="res://building.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 62.321, 37.7625 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 10, 18 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 10, 0, 10, 18 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 20, 0, 10, 18 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 30, 0, 10, 18 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 6.77309, 8.93121 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 225.973, 163.539 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 365.652, 570.183 )
+scale = Vector2( 4, 4 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+position = Vector2( 1.88029, 25.7842 )
+shape = SubResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D"]
+position = Vector2( 1.29305, 20.1354 )
+scale = Vector2( 0.804006, 0.804006 )
+texture = ExtResource( 4 )
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 382.665, 465.743 )
+
+[node name="henry" type="KinematicBody2D" parent="Player"]
+position = Vector2( 347.161, 459.43 )
+scale = Vector2( 4, 4 )
+input_pickable = true
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="Player/henry"]
+position = Vector2( -67.8176, -114.394 )
+scale = Vector2( 0.25, 0.25 )
+current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player/henry"]
+position = Vector2( -68.8179, -114.373 )
+frames = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/henry"]
+position = Vector2( -69.141, -114.373 )
+scale = Vector2( 0.72, 1 )
+shape = SubResource( 6 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 0.2 )
+motion_offset = Vector2( 20, -300 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 264.974, 515.669 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 932.746, 497.464 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 185.39, 83.5091 )
+shape = SubResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D/CollisionShape2D"]
+position = Vector2( -17.2527, 9.16333 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
