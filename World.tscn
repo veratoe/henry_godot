@@ -1,62 +1,130 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Aqua-Capsule-Button-Pressed-.png" type="Texture" id=1]
+[ext_resource path="res://henry_walk.png" type="Texture" id=1]
 [ext_resource path="res://scripts/henry.gd" type="Script" id=2]
 [ext_resource path="res://scripts/World.gd" type="Script" id=3]
 [ext_resource path="res://building3.png" type="Texture" id=4]
 [ext_resource path="res://2de831e9-3f5a-4f45-92e2-69ecd152d8c1.png" type="Texture" id=5]
 [ext_resource path="res://building.png" type="Texture" id=6]
+[ext_resource path="res://obey.png" type="Texture" id=7]
+[ext_resource path="res://neon.png" type="Texture" id=8]
+[ext_resource path="res://rain-02.ogg" type="AudioStream" id=9]
+[ext_resource path="res://bensound-love(1).ogg" type="AudioStream" id=10]
+[ext_resource path="res://footstep03.ogg" type="AudioStream" id=11]
+[ext_resource path="res://jump.ogg" type="AudioStream" id=12]
+[ext_resource path="res://obey.gd" type="Script" id=13]
+[ext_resource path="res://city.ogg" type="AudioStream" id=14]
+[ext_resource path="res://ambulance.ogg" type="AudioStream" id=15]
+[ext_resource path="res://amublance.gd" type="Script" id=16]
+[ext_resource path="res://honking.ogg" type="AudioStream" id=17]
+[ext_resource path="res://honking.gd" type="Script" id=18]
+[ext_resource path="res://building2.png" type="Texture" id=19]
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 62.321, 37.7625 )
+[sub_resource type="ParticlesMaterial" id=1]
+resource_local_to_scene = true
+emission_shape = 2
+emission_box_extents = Vector3( 3000, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 310.34
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+color = Color( 0.760784, 0.760784, 0.760784, 0.392157 )
 
-[sub_resource type="AtlasTexture" id=1]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 10, 18 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 1 )
 region = Rect2( 10, 0, 10, 18 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 1 )
 region = Rect2( 20, 0, 10, 18 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 1 )
 region = Rect2( 30, 0, 10, 18 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 6.77309, 8.93121 )
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 225.973, 163.539 )
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 62.321, 36.933 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 225.973, 158.727 )
+
+[sub_resource type="Environment" id=11]
+background_mode = 4
+dof_blur_far_distance = 98.83
+dof_blur_far_transition = 0.06
+dof_blur_far_amount = 0.88
+dof_blur_far_quality = 0
+glow_enabled = true
+glow_intensity = 1.41
+glow_strength = 0.75
+glow_bloom = 1.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.82
+glow_hdr_scale = 0.59
+adjustment_enabled = true
+adjustment_saturation = 0.5
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 48.363, 39.088 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 365.652, 570.183 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 24.058, 0 )
+motion_scale = Vector2( 0.2, 0.1 )
+motion_offset = Vector2( 20, -400 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 0.45098, 0.45098, 0.45098, 0.831373 )
+position = Vector2( 264.974, 515.669 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Regen" type="Particles2D" parent="."]
+position = Vector2( 826.647, -160.955 )
+scale = Vector2( 0.6, 1.48 )
+amount = 2500
+lifetime = 7.46
+randomness = 0.16
+fract_delta = false
+visibility_rect = Rect2( -2000, -100, 10000, 8000 )
+process_material = SubResource( 1 )
+
+[node name="obey" type="Sprite" parent="."]
+position = Vector2( 295.574, 267.177 )
 scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+script = ExtResource( 13 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-position = Vector2( 1.88029, 25.7842 )
-shape = SubResource( 7 )
-
-[node name="Sprite" type="Sprite" parent="Node2D/StaticBody2D"]
-position = Vector2( 1.29305, 20.1354 )
-scale = Vector2( 0.804006, 0.804006 )
-texture = ExtResource( 4 )
+[node name="neon" type="Sprite" parent="obey"]
+visible = false
+position = Vector2( 0.121048, -0.825363 )
+texture = ExtResource( 8 )
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2( 382.665, 465.743 )
@@ -68,41 +136,106 @@ input_pickable = true
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Player/henry"]
-position = Vector2( -67.8176, -114.394 )
+position = Vector2( -67.0243, -142.557 )
 scale = Vector2( 0.25, 0.25 )
 current = true
+smoothing_enabled = true
+smoothing_speed = 15.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player/henry"]
 position = Vector2( -68.8179, -114.373 )
-frames = SubResource( 5 )
+frames = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/henry"]
 position = Vector2( -69.141, -114.373 )
 scale = Vector2( 0.72, 1 )
-shape = SubResource( 6 )
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 0.2 )
-motion_offset = Vector2( 20, -300 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 264.974, 515.669 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 5 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="audio_jump" type="AudioStreamPlayer2D" parent="Player/henry"]
+position = Vector2( -86.7903, -114.857 )
+scale = Vector2( 0.25, 0.25 )
+stream = ExtResource( 12 )
+
+[node name="audio" type="AudioStreamPlayer2D" parent="Player/henry"]
+position = Vector2( -86.7903, -114.857 )
+scale = Vector2( 0.25, 0.25 )
+stream = ExtResource( 11 )
+pitch_scale = 0.73
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 365.652, 570.183 )
+scale = Vector2( 4, 4 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D2"]
+position = Vector2( 1.29305, 20.1354 )
+scale = Vector2( 0.804006, 0.804006 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 1.88029, 25.7842 )
+shape = SubResource( 9 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 365.652, 570.183 )
+scale = Vector2( 4, 4 )
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D3"]
+position = Vector2( 336.522, 28.0855 )
+scale = Vector2( 0.804006, 0.804006 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 337.109, 34.3968 )
+shape = SubResource( 9 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 932.746, 497.464 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 185.39, 83.5091 )
-shape = SubResource( 8 )
+position = Vector2( 127.99, 81.1174 )
+shape = SubResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2( -17.2527, 9.16333 )
+position = Vector2( -24.4276, 9.16333 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 6 )
+
+[node name="amublance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
+script = ExtResource( 16 )
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+autoplay = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 11 )
+
+[node name="honking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 17 )
+attenuation = 1.36936e-07
+script = ExtResource( 18 )
+
+[node name="building2" type="Sprite" parent="."]
+position = Vector2( -322.345, 577.31 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 19 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="building2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="building2/StaticBody2D"]
+shape = SubResource( 16 )

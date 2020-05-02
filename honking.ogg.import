@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/honking.ogg-d055e993e349e37106156fc6e5749f12.oggstr"
+
+[deps]
+
+source_file="res://honking.ogg"
+dest_files=[ "res://.import/honking.ogg-d055e993e349e37106156fc6e5749f12.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

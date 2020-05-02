@@ -17,6 +17,9 @@ _global_script_class_icons={
 
 config/name="godot\\henry"
 run/main_scene="res://World.tscn"
+boot_splash/image="res://text.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [input]
